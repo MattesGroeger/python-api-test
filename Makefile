@@ -9,6 +9,10 @@ setup:
 	$(VENV_DIR)/bin/pip install -r requirements.txt
 	echo "Virtual environment created. Activate it with: source $(VENV_DIR)/bin/activate"
 
+# Run the FastAPI server
+run:
+	$(VENV_DIR)/bin/uvicorn src.main:app --reload
+
 # Clean up the environment
 clean:
 	rm -rf $(VENV_DIR)
