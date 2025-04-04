@@ -21,4 +21,12 @@ clean:
 	rm -rf src/*/__pycache__
 	rm -f defi_yields.db
 
-.PHONY: setup run clean
+# Run tests
+test:
+	pytest
+
+# Generate Postman collection
+generate-postman:
+	$(VENV_DIR)/bin/python scripts/generate_postman.py
+
+.PHONY: setup run test clean generate-openapi generate-postman
