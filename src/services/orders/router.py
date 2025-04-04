@@ -1,7 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from typing import List
 from .models import Order, OrderCreate, OrderItem
 from datetime import datetime
+from src.services.auth.service import get_current_user
+from src.services.auth.models import User
 
 router = APIRouter()
 
@@ -10,7 +12,7 @@ orders_db = {}
 order_id_counter = 1
 
 @router.post("/", response_model=Order)
-async def create_order(order: OrderCreate):
+async def create_order(order: OrderCreate, current_user: User = Depends(get_current_user)):
     global order_id_counter
     order_id = order_id_counter
     order_id_counter += 1
@@ -33,17 +35,17 @@ async def create_order(order: OrderCreate):
     return new_order
 
 @router.get("/", response_model=List[Order])
-async def list_orders():
+async def list_orders(current_user: User = Depends(get_current_user)):
     return list(orders_db.values())
 
 @router.get("/{order_id}", response_model=Order)
-async def get_order(order_id: int):
+async def get_order(order_id: int, current_user: User = Depends(get_current_user)):
     if order_id not in orders_db:
         raise HTTPException(status_code=404, detail="Order not found")
     return orders_db[order_id]
 
 @router.put("/{order_id}/status", response_model=Order)
-async def update_order_status(order_id: int, status: str):
+async def update_order_status(order_id: int, status: str, current_user: User = Depends(get_current_user)):
     if order_id not in orders_db:
         raise HTTPException(status_code=404, detail="Order not found")
     

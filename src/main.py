@@ -25,8 +25,14 @@ app.add_middleware(
 # Import and include routers from different services
 from src.services.products.router import router as products_router
 from src.services.orders.router import router as orders_router
+from src.services.auth.router import router as auth_router
 
 # Include service routers with proper prefixes
+app.include_router(
+    auth_router,
+    prefix=f"{settings.API_V1_STR}/auth",
+    tags=["auth"]
+)
 app.include_router(
     products_router,
     prefix=f"{settings.API_V1_STR}/products",
