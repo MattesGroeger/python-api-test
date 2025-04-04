@@ -1,0 +1,41 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv
+venv
+ENV
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+
+# Environment
+.env
+*.env
+
+# Documentation
+docs
+*.md
+!README.md
+
+# Postman
+postman_collection.json
+openapi.json 

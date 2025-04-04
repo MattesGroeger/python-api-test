@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ecommerce-api
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerCommand: uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHONPATH
+        value: /app
+      - key: PORT
+        value: 8000
+    healthCheckPath: /docs
+    autoDeploy: true 
