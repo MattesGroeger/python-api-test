@@ -29,4 +29,14 @@ test:
 generate-postman:
 	$(VENV_DIR)/bin/python scripts/generate_postman.py
 
-.PHONY: setup run test clean generate-openapi generate-postman
+# Monitoring
+monitor-up:
+	docker-compose -f docker-compose.monitoring.yml up -d
+
+monitor-down:
+	docker-compose -f docker-compose.monitoring.yml down
+
+monitor-logs:
+	docker-compose -f docker-compose.monitoring.yml logs -f
+
+.PHONY: setup run test clean generate-postman monitor-up monitor-down monitor-logs
