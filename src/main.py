@@ -26,6 +26,7 @@ app.add_middleware(
 from src.services.products.router import router as products_router
 from src.services.orders.router import router as orders_router
 from src.services.auth.router import router as auth_router
+from src.services.jobs.router import router as jobs_router
 
 # Include service routers with proper prefixes
 app.include_router(
@@ -42,6 +43,11 @@ app.include_router(
     orders_router,
     prefix=f"{settings.API_V1_STR}/orders",
     tags=["orders"]
+)
+app.include_router(
+    jobs_router,
+    prefix=f"{settings.API_V1_STR}/jobs",
+    tags=["jobs"]
 )
 
 @app.get("/")
