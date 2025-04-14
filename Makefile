@@ -29,4 +29,33 @@ test:
 generate-postman:
 	$(VENV_DIR)/bin/python scripts/generate_postman.py
 
-.PHONY: setup run test clean generate-openapi generate-postman
+# Docker commands
+docker-build:
+	docker-compose build
+
+docker-up:
+	docker-compose up -d
+
+docker-down:
+	docker-compose down
+
+docker-logs:
+	docker-compose logs -f
+
+docker-logs-api:
+	docker-compose logs -f api
+
+docker-logs-worker:
+	docker-compose logs -f worker
+
+docker-logs-redis:
+	docker-compose logs -f redis
+
+docker-restart:
+	docker-compose restart
+
+docker-clean:
+	docker-compose down -v
+	docker-compose rm -f
+
+.PHONY: setup run test clean generate-openapi generate-postman docker-build docker-up docker-down docker-logs docker-logs-api docker-logs-worker docker-logs-redis docker-restart docker-clean
