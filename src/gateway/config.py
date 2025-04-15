@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "E-Commerce API Gateway"
     VERSION: str = "1.0.0"
+    DESCRIPTION: str = "A microservices-based e-commerce platform with API Gateway"
     
     # CORS settings
     BACKEND_CORS_ORIGINS: List[str] = ["*"]

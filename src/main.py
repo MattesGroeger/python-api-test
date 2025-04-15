@@ -5,7 +5,7 @@ from .gateway.middleware import RateLimitMiddleware, LoggingMiddleware
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="A microservices-based e-commerce platform with API Gateway",
+    description=settings.DESCRIPTION,
     version=settings.VERSION
 )
 
